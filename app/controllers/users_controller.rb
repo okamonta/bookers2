@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   # /users に Create Book がある。
   def index
     @users = User.all
+    @user = User.find(params[:id])
   end
   
   # /users/:id に Create Book がある。
@@ -10,7 +11,6 @@ class UsersController < ApplicationController
   # _idいらない？そもそも定義いらない？
   def show
     @user = User.find(params[:id])
-    # @profile_image_id = @user.profile_image_id.page(params[:page]).reverse_order
     # @book = Book.find(params[:id])
   end
   

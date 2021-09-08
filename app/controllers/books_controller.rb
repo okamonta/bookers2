@@ -10,8 +10,7 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     @book = Book.new
-    # @user = @book.users.page(params[:page]).reverse_order
-    # @user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
   
   # /books/:id [Book detail] にも Create Book がある。editページにもとぶ。
