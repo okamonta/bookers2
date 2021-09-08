@@ -14,10 +14,28 @@
       <% if user_signed_in? %>
         <!--ログイン時、Home.Users.Books.logoutをヘッダーに表示-->
         <li>
+          <!--5章に載ってた。-->
+          <%= link_to "Home", user_path(current_user.id) %>
+          <!--%= link_to "Home", '/users/#{current_user.id}' %>-->
+          <!--%= link_to "Home", new_user_registration_path %>-->
+        </li>
+        <li>
+          <%= link_to "Users", users_path %>
+        </li>
+        <li>
+          <%= link_to "Books", books_path %>
+        </li>
+        <li>
           <%= link_to "logout", destroy_user_session_path, method: :delete %>
         </li>
       <% else %>
         <!--ログインしてない場合は、Home,About,sign up loginをヘッダーに表示-->
+        <li>
+          <%= link_to "Home", root_path %>
+        </li>
+        <li>
+          <%= link_to "About", home_about_path %>
+        </li>
         <li>
           <%= link_to "sign up", new_user_registration_path %>
         </li>

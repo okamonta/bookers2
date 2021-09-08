@@ -1,0 +1,26 @@
+<h1>User info</h1>
+
+<%= form_with model:@user, local:true do |f| %>
+
+  <div class="field">
+    <h4>Name</h4>
+    <%= f.text_field :name %>
+  </div>
+
+  <!--Image-->
+  <!--ここも_idはいらないっぽい（rails7章）-->
+  <div class="field">
+    <h4>Image</h4>
+    <%= f.attachment_field :profile_image %>
+  </div>
+
+  <div class="field">
+    <h4>Introduction</h4>
+    <%= f.text_area :introduction %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Update User' %>
+  </div>
+
+<% end %>
