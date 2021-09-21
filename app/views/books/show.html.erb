@@ -1,57 +1,37 @@
-
-<div class="container px-5 px-sm-0">
+<!--投稿詳細-->
+<div class="container">
+  
+  <!--サクセスメッセージ-->
+  <p id="notice">
+    <%= notice %>
+  </p>
+  
+  <!--サイドバー-->
   <div class="row">
-    
     <div class="col-md-3">
-      <h2>User info</h2>
-      <!--user_image-->
-      <!--%= attachment_image_tag user, :profile_image_id, :fill, 100, 100, format: 'jpeg' %>-->
-      <!--実際のカラムは profile_image_id だが id を外して指定。（refile仕様）-->
-      <!--no_image.jpg がまだ反映されてない（ダウンロードできてない）-->
-      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-      <table>
-        <tbody>
-      <!--name-->
-          <tr>
-            <th>name</th>
-            <th><%= @user.name %></th>
-          </tr>
-      <!--introduction-->
-          <tr>
-            <th>introduction</th>
-            <th><%= @user.introduction %></th>
-          </tr>
-        </tbody>
-      </table>
-      <!--editページにとぶ。-->
-      <div class="row">
-        <% if @user.id == current_user.id %>
-          <p><%= link_to "Edit", edit_user_path(@user) %></p>
-        <% end %>
-        <!--%= link_to "Edit", edit_user_path(current_user) %>-->
-      </div>
-      
-      <h2 class="mt-3">New book</h2>
-      <%= form_with model:@book, url:'/books', local:true do |f| %>
-      <!--title-->
-      <div class="field">
-        <h4>Title</h4>
-        <%= f.text_field :title %>
-      </div>
-      <!--opinion-->
-      <div class="field">
-        <h4>Opinion</h4>
-        <%= f.text_area :opinion %>
-      </div>
-      <!--Create Book  New bookを作成-->
-      <div class="actions">
-        <%= f.submit 'Create Book' %>
-      </div>
-      <% end %>
+      <%= render 'users/userinfo', user: @user %>
+      <%= render 'books/newbook', book: @newbook %>
     </div>
     
-    <!--Book detail（右側）-->
-    <!--user_image_id  user_name  title  opinion-->
-    
+    <!--投稿詳細-->
+    <div class="col-md-8 offset-md-1">
+      <h1>Book detail</h1>
+      <table class="table table-hover table-inverse">
+        <tr>
+          <td>
+            <%= link_to user_path(@user) do %>
+              <%= attachment_image_tag @book.user, :profile_image, :fill, 30, 30, fallback: "no_image.jpeg" %><br>
+              <%= @user.name %>
+            <% end %>
+          </td>
+          <td><%= link_to @book.title, book_path(@book) %></td>
+          <td><%= @book.body %></td>
+          <% if @book.user_id == current_user.id %>
+            <td><%= link_to "Edit", edit_book_path(@book), class:"btn btn-success"%></td>
+            <td><%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に消しますか？"}, class:"btn btn-danger" %></td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
