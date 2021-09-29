@@ -33,11 +33,7 @@
               <td><%= book.body %></td>
               
               <!--いいね機能-->
-              <td>
-                <div>
-                  <%= render 'favorites/favorite', book: book %>
-                </div>
-              </td>
+              <td><%= render "favorites/favorite-btn", book: book %></td>
               
               <td>コメント数:<%= book.book_comments.count %></td>
               

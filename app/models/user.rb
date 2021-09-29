@@ -10,7 +10,7 @@ class User < ApplicationRecord
   
   
   # カラムはprofile_image_id、ここでは_idはいらない。（rails7章）
-  attachment :profile_image
+  attachment :profile_image, destroy: false
   
   # nameが空or２文字以下だとエラー
   # アプリ側とDB側の両方に記述する必要があった。

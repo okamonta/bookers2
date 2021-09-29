@@ -1,5 +1,8 @@
 class BooksController < ApplicationController
   
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  
   # /books/:id [Book detail] にも Create Book がある。editページにもとぶ。
   # /users/:id からとべる。逆も然り。
   # books_controller 内で userの変数を受け取ることは可能なのか？
@@ -8,7 +11,7 @@ class BooksController < ApplicationController
     @newbook = Book.new
     @book = Book.find(params[:id])
     @user = @book.user
-    @comment = BookComment.new
+    @book_comment = BookComment.new
   end
   
   # /books ページ(index)で Create Book を表示する。（/users /books）
@@ -76,6 +79,13 @@ class BooksController < ApplicationController
   private
   def book_params
     params.require(:book).permit(:title, :body)
+  end
+  
+  def ensure_correct_user
+    @book = Book.find(params[:id])
+    unless @book.user == current_user
+      redirect_to books_path
+    end
   end
 
 end
