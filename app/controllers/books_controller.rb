@@ -8,6 +8,7 @@ class BooksController < ApplicationController
     @newbook = Book.new
     @book = Book.find(params[:id])
     @user = @book.user
+    @comment = BookComment.new
   end
   
   # /books ページ(index)で Create Book を表示する。（/users /books）
