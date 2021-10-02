@@ -1,25 +1,11 @@
-<div class="row">
-    <div class="col-xs-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <h1>Editing Book</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h1>Editing Book</h1>
       <%= render 'books/error', model: @book %>
-      <!--%= render 'books/book', book: @book %>-->
-    <%= form_with model:@book, local:true do |f| %>
-      <div class="field row">
-        <%= f.label :title %>
-        <%= f.text_field :title, class: "form-control" %>
-      </div>
-      <div class="field row">
-        <%= f.label :body %>
-        <%= f.text_area :body, class: "form-control" %>
-      </div>
-      <div class="actions row">
-        <%= f.submit class: "btn btn-primary form-control col-md-4" %>
-      </div>
-      <div class="menu">
-        <%= link_to "Show", book_path(@book) %>
-        |
-        <%= link_to "Back", books_path %>
-      </div>
-    <% end %>
+      <%= render 'books/form', model: @book %>
+      <%= link_to "Show", book_path(@book) %>
+      |
+      <%= link_to "Back", books_path %>
     </div>
 </div>
