@@ -1,26 +1,30 @@
-<div class="row">
- <div class="col-md-4 offset-md-4">
-  
-  <%= render 'books/error', model: @user %>cd 
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      
+    <h2>User info</h2>
 
-  <h1>User info</h1>
-
-  <%= form_with model:@user, local:true do |f| %>
-
-    <div class="user-name">Name</div>
-      <%= f.text_field :name %>
+    <%= form_with model:@user, local:true do |f| %>
     
-    <div class="user-edit-image">Image</div>
-      <%= f.attachment_field :profile_image %>
+      <%= render 'books/error', model: @user %>
+      
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control name" %>
+      </div>
+     <div class="form-group">
+        <%= f.label :image %>
+        <%= f.attachment_field :profile_image, class: "form-control-file user_image" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :introduction %>
+        <%= f.text_area :introduction, class: "form-control introduction" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit class: 'btn btn-secondary' %>
+      </div>
 
-    <div class="form-body">Introduction</div>
-      <%= f.text_area :introduction %><br>
-
-    <div class="update">
-      <%= f.submit 'Update User' %>
-    </div>
-
-  <% end %>
+    <% end %>
   
  </div>
 </div>
