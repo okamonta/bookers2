@@ -15,5 +15,13 @@ class FavoritesController < ApplicationController
     favorite.destroy
     redirect_to request.referer
   end
+  
+  
+  private
+
+  def book_params
+      @book= Book.find(params[:book_id])
+  end
+  
 end
 
