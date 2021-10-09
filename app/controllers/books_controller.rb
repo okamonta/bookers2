@@ -3,10 +3,14 @@ class BooksController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   
-
+  
+  # 上からプログラムが実行されるため、
+  # @bookの変数がBook.newになり、何もない状態になっているため、
+  # showアクションを起こしても変数が'nil'になってしまう！（メンターさん）
+  # 変数名をどちらか変更すれば良い
   def show
     @book = Book.find(params[:id])
-    @book = Book.new
+    @book_new = Book.new
     @user = @book.user
     @book_comment = BookComment.new
   end
