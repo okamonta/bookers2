@@ -1,0 +1,11 @@
+<div class="search-form">
+<!--今回は検索フォームなので、DBに保存する必要がない。model:インスタンスがいらない！-->
+  <%= form_with url: search_path, method: :get, local: true do |f| %>
+    <%= f.text_field :content %>
+    
+  <!--もし、Userの名前と紹介文で選択ボックスを作るなら、(@user,'name', 'introduction')　になる-->
+    <%= f.select :model, options_for_select({"User" => "user", "Book" => "book"}) %>
+    <%= f.select :method, options_for_select({"完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial"}) %>
+    <%= f.submit '検索' %>
+  <% end %>
+</div>
